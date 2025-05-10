@@ -61,6 +61,7 @@ COURSEWORK/
 │   ├── web/
 │   ├── go.mod
 │   └── go.sum
+├── LICENSE
 └── README.md
  
 ```
