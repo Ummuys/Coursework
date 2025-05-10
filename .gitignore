@@ -1,2 +1,2 @@
-grpc/proto/health/gen
-grpc/proto/students/gen
+grpc/proto/health/gen/
+grpc/proto/students/gen/
