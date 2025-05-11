@@ -1,12 +1,15 @@
 package handlers
 
 import (
-	repos "coursework/repository"
 	"net/http"
+
+	repos "github.com/ummuys/coursework/rest-way/repository"
 
 	"github.com/gin-gonic/gin"
 )
 
-func Get(g *gin.Context) {
-	g.JSON(http.StatusOK, repos.Db.ToJson())
+func Get(db repos.DataBase) gin.HandlerFunc {
+	return func(g *gin.Context) {
+		g.JSON(http.StatusOK, db.GetJSONFields())
+	}
 }

@@ -1,4 +1,4 @@
-module coursework
+module github.com/ummuys/coursework/grpc-way
 
 go 1.24.2
 

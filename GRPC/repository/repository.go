@@ -1,13 +1,19 @@
 package repository
 
 import (
-	pbStudents "coursework/proto/students/gen"
-	"coursework/tools"
 	"math/rand"
 	"time"
+
+	pbStudents "github.com/ummuys/coursework/grpc-way/proto/students/gen"
+	"github.com/ummuys/coursework/grpc-way/tools"
 )
 
-var Db = DataBase{}
+type DataBase interface {
+	SetFields(n int)
+	ToProto()
+	GetBasicFields() map[int64]StudentInfo
+	GetProtoFields() map[int64]*pbStudents.StudentInfo
+}
 
 type StudentInfo struct {
 	FirstName     string
@@ -20,15 +26,22 @@ type StudentInfo struct {
 	Group         string
 }
 
-type DataBase struct {
-	Fields map[int64]StudentInfo
+type MapDb struct {
+	BasicFields map[int64]StudentInfo
+	ProtoFields map[int64]*pbStudents.StudentInfo
 }
 
-func (d *DataBase) SetFields(n int) {
-	d.Fields = make(map[int64]StudentInfo, n)
+func NewMapDB() DataBase {
+	return &MapDb{
+		BasicFields: make(map[int64]StudentInfo),
+		ProtoFields: make(map[int64]*pbStudents.StudentInfo),
+	}
+}
+
+func (db *MapDb) SetFields(n int) {
 	rand.NewSource(time.Now().UnixNano())
 	for i := 0; i <= n; i++ {
-		d.Fields[int64(i)] = StudentInfo{
+		db.BasicFields[int64(i)] = StudentInfo{
 			FirstName:     tools.RandomString(6),
 			SecondName:    tools.RandomString(6),
 			Surname:       tools.RandomString(6),
@@ -41,15 +54,17 @@ func (d *DataBase) SetFields(n int) {
 	}
 }
 
-func (d *DataBase) GetData() map[int64]StudentInfo {
-	return d.Fields
+func (d *MapDb) GetBasicFields() map[int64]StudentInfo {
+	return d.BasicFields
 }
 
-func (d *DataBase) ToProto() map[int64]*pbStudents.StudentInfo {
-	protoMap := make(map[int64]*pbStudents.StudentInfo, len(d.Fields))
+func (d *MapDb) GetProtoFields() map[int64]*pbStudents.StudentInfo {
+	return d.ProtoFields
+}
 
-	for id, r := range d.Fields {
-		protoMap[id] = &pbStudents.StudentInfo{
+func (d *MapDb) ToProto() {
+	for id, r := range d.BasicFields {
+		d.ProtoFields[id] = &pbStudents.StudentInfo{
 			FirstName:     r.FirstName,
 			SecondName:    r.SecondName,
 			Surname:       r.Surname,
@@ -60,5 +75,4 @@ func (d *DataBase) ToProto() map[int64]*pbStudents.StudentInfo {
 			Group:         r.Group,
 		}
 	}
-	return protoMap
 }

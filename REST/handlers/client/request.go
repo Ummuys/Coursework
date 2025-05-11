@@ -1,12 +1,11 @@
 package client
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 )
 
-func TestRest() {
+func TestRest() time.Duration {
 	start := time.Now()
 	info, err := http.Get("http://localhost:8080/students")
 	end := time.Since(start)
@@ -14,5 +13,5 @@ func TestRest() {
 		panic(err)
 	}
 	defer info.Body.Close()
-	fmt.Println("Time taken --> ", end)
+	return end
 }

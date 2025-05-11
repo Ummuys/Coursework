@@ -1,11 +1,11 @@
 package main
 
 import (
-	server "coursework/api"
-	client "coursework/handlers/client"
-	repos "coursework/repository"
 	"fmt"
 	"time"
+
+	server "github.com/ummuys/coursework/rest-way/api"
+	"github.com/ummuys/coursework/rest-way/tools"
 )
 
 func main() {
@@ -13,9 +13,6 @@ func main() {
 	go func() { server.InitGin() }()
 	fmt.Println("OK status: server is running")
 
-	<-time.After(1 * time.Second)
-
-	repos.Db.SetFields(1000)
-
-	client.TestRest()
+	<-time.After(1000000000 * time.Second)
+	tools.Report(1000)
 }

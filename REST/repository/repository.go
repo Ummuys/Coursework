@@ -1,34 +1,47 @@
 package repository
 
 import (
-	"coursework/tools"
 	"math/rand"
 	"strconv"
 	"time"
+
+	"github.com/ummuys/coursework/rest-way/tools"
 )
 
-var Db = DataBase{}
+type DataBase interface {
+	SetFields(n int)
+	ToJSON()
+	GetBasicFields() map[int64]StudentInfo
+	GetJSONFields() map[string]StudentInfo
+}
 
 type StudentInfo struct {
-	FirstName     string  `json:"first_name"`
-	SecondName    string  `json:"second_name"`
-	Surname       string  `json:"surname"`
-	Email         string  `json:"email"`
-	AverageRating float32 `json:"avg_raiting"`
-	Type          string  `json:"type"`
-	Faculty       string  `json:"faculty"`
-	Group         string  `json:"group"`
+	FirstName     string
+	SecondName    string
+	Surname       string
+	Email         string
+	AverageRating float32
+	Type          string
+	Faculty       string
+	Group         string
 }
 
-type DataBase struct {
-	Fields map[int64]StudentInfo
+type MapDb struct {
+	BasicFields map[int64]StudentInfo
+	JSONFields  map[string]StudentInfo
 }
 
-func (d *DataBase) SetFields(n int) {
-	d.Fields = make(map[int64]StudentInfo, n)
+func NewMapDB() DataBase {
+	return &MapDb{
+		BasicFields: make(map[int64]StudentInfo),
+		JSONFields:  make(map[string]StudentInfo),
+	}
+}
+
+func (db *MapDb) SetFields(n int) {
 	rand.NewSource(time.Now().UnixNano())
 	for i := 0; i <= n; i++ {
-		d.Fields[int64(i)] = StudentInfo{
+		db.BasicFields[int64(i)] = StudentInfo{
 			FirstName:     tools.RandomString(6),
 			SecondName:    tools.RandomString(6),
 			Surname:       tools.RandomString(6),
@@ -41,15 +54,17 @@ func (d *DataBase) SetFields(n int) {
 	}
 }
 
-func (d *DataBase) GetData() map[int64]StudentInfo {
-	return d.Fields
+func (db *MapDb) GetBasicFields() map[int64]StudentInfo {
+	return db.BasicFields
 }
 
-func (d *DataBase) ToJson() map[string]StudentInfo {
-	jsonMap := make(map[string]StudentInfo, len(d.Fields))
-	for id, info := range d.Fields {
+func (db *MapDb) GetJSONFields() map[string]StudentInfo {
+	return db.JSONFields
+}
+
+func (db *MapDb) ToJSON() {
+	for id, info := range db.BasicFields {
 		key := strconv.FormatInt(id, 10)
-		jsonMap[key] = info
+		db.JSONFields[key] = info
 	}
-	return jsonMap
 }

@@ -3,27 +3,41 @@ package server
 import (
 	"net"
 
-	handHealth "coursework/handlers/server/health"
-	handStudents "coursework/handlers/server/students"
-	pbHealth "coursework/proto/health/gen"
-	pbStudents "coursework/proto/students/gen"
+	handHealth "github.com/ummuys/coursework/grpc-way/handlers/server/health"
+	handStudents "github.com/ummuys/coursework/grpc-way/handlers/server/students"
+	pbHealth "github.com/ummuys/coursework/grpc-way/proto/health/gen"
+	pbStudents "github.com/ummuys/coursework/grpc-way/proto/students/gen"
+	repos "github.com/ummuys/coursework/grpc-way/repository"
 
 	"google.golang.org/grpc"
 )
 
 func StartListen(serverStatus chan struct{}) {
+	// Получаем запросы по адресу http://localhost:8080
 	list, err := net.Listen("tcp", ":8080")
 	if err != nil {
 		panic(err)
 	}
 
+	// Инициализируем базу данных
+	db := repos.NewMapDB()
+	db.SetFields(1000)
+	db.ToProto()
+
+	// Инициализируем новый сервер
 	grpcServer := grpc.NewServer()
+
+	// Регистрируем путь для "прогрева" канала
 	pbHealth.RegisterHealthServer(grpcServer, &handHealth.Health{})
-	pbStudents.RegisterStudentsServer(grpcServer, &handStudents.Students{})
+
+	// Регистрируем путь для отравки словаря
+	pbStudents.RegisterStudentsServer(grpcServer, &handStudents.Students{DB: db})
+
+	// Отправляем сигнал, что сервер успешно запущен
 	serverStatus <- struct{}{}
 
+	// Если произошла ошибка на стороне сервера, то экстренно закрываем программу
 	if err := grpcServer.Serve(list); err != nil {
 		panic(err)
 	}
-
 }

@@ -29,12 +29,12 @@ deps:
 	@go mod tidy
 	@echo "Package updated\n"
 
-buildAllContracts: deps checkFolders buildContractStudents buildContractHealth
+buildAllContracts: checkFolders buildContractStudents buildContractHealth
 	@echo "All contracts are generated\n"
 
 buildContractHealth: 
 	@echo "Building health contract. . ."
-	protoc -I $(PROTO_PATH_HEALTH) $(PROTO_PATH_FILE_HEALTH) \
+	@protoc -I $(PROTO_PATH_HEALTH) $(PROTO_PATH_FILE_HEALTH) \
 	--go_out=$(GEN_PATH_HEALTH) \
 	--go_opt=paths=source_relative \
 	--go-grpc_out=$(GEN_PATH_HEALTH) \
@@ -43,7 +43,7 @@ buildContractHealth:
 
 buildContractStudents: 
 	@echo "Building students contract. . ."
-	protoc -I $(PROTO_PATH_STUDENTS) $(PROTO_PATH_FILE_STUDENTS) \
+	@protoc -I $(PROTO_PATH_STUDENTS) $(PROTO_PATH_FILE_STUDENTS) \
 	--go_out=$(GEN_PATH_STUDENTS) \
 	--go_opt=paths=source_relative \
 	--go-grpc_out=$(GEN_PATH_STUDENTS) \

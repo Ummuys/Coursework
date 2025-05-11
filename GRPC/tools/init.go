@@ -5,7 +5,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-func InitGRPC() (*grpc.ClientConn, error) {
+func InitClientGRPC() (*grpc.ClientConn, error) {
 	conn, err := grpc.NewClient(
 		"localhost:8080",
 		grpc.WithTransportCredentials(insecure.NewCredentials()),

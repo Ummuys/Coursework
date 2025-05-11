@@ -2,8 +2,9 @@ package health
 
 import (
 	"context"
-	pbHealth "coursework/proto/health/gen"
 	"net/http"
+
+	pbHealth "github.com/ummuys/coursework/grpc-way/proto/health/gen"
 
 	"google.golang.org/protobuf/types/known/emptypb"
 )

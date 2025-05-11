@@ -1,6 +1,6 @@
 package health
 
-import pbHealth "coursework/proto/health/gen"
+import pbHealth "github.com/ummuys/coursework/grpc-way/proto/health/gen"
 
 type Health struct {
 	pbHealth.UnimplementedHealthServer

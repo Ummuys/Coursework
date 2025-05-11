@@ -1,5 +1,4 @@
-module coursework
-
+module github.com/ummuys/coursework/rest-way
 go 1.24.2
 
 require (
