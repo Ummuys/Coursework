@@ -85,7 +85,6 @@ COURSEWORK/
 │   ├── handlers/
 │   ├── proto/
 │   ├── repository/
-│   ├── server/
 │   ├── tools/
 │   ├── go.mod
 │   └── go.sum
