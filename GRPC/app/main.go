@@ -1,12 +1,12 @@
 package main
 
 import (
-	handHealth "coursework/handlers/health"
-	handStudents "coursework/handlers/students"
+	server "coursework/api"
+	handHealth "coursework/handlers/client/health"
+	handStudents "coursework/handlers/client/students"
 	pbHealth "coursework/proto/health/gen"
 	pbStudents "coursework/proto/students/gen"
 	"coursework/repository"
-	server "coursework/server"
 	"coursework/tools"
 	"errors"
 	"fmt"

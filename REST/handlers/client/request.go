@@ -14,6 +14,5 @@ func TestRest() {
 		panic(err)
 	}
 	defer info.Body.Close()
-	fmt.Println(info.Body)
 	fmt.Println("Time taken --> ", end)
 }

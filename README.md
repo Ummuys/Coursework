@@ -16,8 +16,8 @@
 
 ### 📦 Требования
 
-- Go 1.20+
-- Make (опционально, если используешь `makefile`)
+- Go 1.24.2
+- Make (но можно и без него)
 
 ---
 
@@ -31,17 +31,42 @@ go mod tidy
 REST-way:
 <----------->
 cd REST
-cd app
-go run main.go
+
+<\> Если у вас есть make:
+	cd build
+	make
+
+<\> Если у вас нет make:
+	mkdir ../proto/students/gen/
+	mkdir ../proto/health/gen/
+
+	protoc -I ../proto/students ../proto/students/students.proto \
+	--go_out=../proto/students/gen \
+	--go_opt=paths=source_relative \
+	--go-grpc_out=../proto/students/gen \
+	--go-grpc_opt=paths=source_relative
+
+	protoc -I ../proto/health ../proto/health/health.proto \
+	--go_out=../proto/health/gen \
+	--go_opt=paths=source_relative \
+	--go-grpc_out=../proto/health/gen \
+	--go-grpc_opt=paths=source_relative
+
+	cd ../app
+	go run main.go
 <----------->
 
 GRPC-way:
 <----------->
 cd GRPC
-cd build
-make (если у вас нет Make, то сгенерируйте контракт сами)
-cd ../app
-go run main.go
+
+<\> Если у вас есть make:
+	cd build
+	make
+
+<\> Если у вас нет make:
+	cd app
+	go run main.go
 <----------->
 
 
@@ -70,9 +95,11 @@ COURSEWORK/
 │   ├── app/
 │   ├── repository/
 │   ├── tools/
+│   ├── build/
 │   ├── handlers/
 │   ├── go.mod
 │   └── go.sum
+|
 ├── LICENSE
 └── README.md
  
