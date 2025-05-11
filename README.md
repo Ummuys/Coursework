@@ -30,7 +30,7 @@ go mod tidy
 
 REST-way:
 <----------->
-cd rest
+cd REST
 
 <\> Если у вас есть make:
 	cd build
@@ -58,7 +58,7 @@ cd rest
 
 GRPC-way:
 <----------->
-cd grpc
+cd GRPC
 
 <\> Если у вас есть make:
 	cd build
@@ -78,7 +78,7 @@ cd grpc
 
 ```
 COURSEWORK/
-├── grpc/
+├── GRPC/
 │   ├── api/
 │   ├── app/
 │   ├── build/
@@ -89,7 +89,7 @@ COURSEWORK/
 │   ├── go.mod
 │   └── go.sum
 │
-├── rest/
+├── REST/
 |   ├── api/
 │   ├── app/
 │   ├── repository/
