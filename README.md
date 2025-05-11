@@ -73,6 +73,7 @@ COURSEWORK/
 │   ├── handlers/
 │   ├── go.mod
 │   └── go.sum
+├── LICENSE
 └── README.md
  
 ```
