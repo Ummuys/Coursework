@@ -43,8 +43,6 @@ go run main.go
 COURSEWORK/
 ├── GRPC/
 │   ├── api/
-│   │   ├── health/
-│   │   └── students/
 │   ├── app/
 │   ├── build/
 │   ├── handlers/
@@ -54,11 +52,13 @@ COURSEWORK/
 │   ├── tools/
 │   ├── go.mod
 │   └── go.sum
+│
 ├── REST/
+|   ├── api/
 │   ├── app/
 │   ├── repository/
 │   ├── tools/
-│   ├── web/
+│   ├── handlers/
 │   ├── go.mod
 │   └── go.sum
 └── README.md

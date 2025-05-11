@@ -1,7 +1,7 @@
 package server
 
 import (
-	hand "coursework/web/api/server"
+	hand "coursework/handlers/server"
 
 	"github.com/gin-gonic/gin"
 )

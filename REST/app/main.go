@@ -1,9 +1,9 @@
 package main
 
 import (
+	server "coursework/api"
+	client "coursework/handlers/client"
 	repos "coursework/repository"
-	client "coursework/web/api/client"
-	"coursework/web/server"
 	"fmt"
 	"time"
 )
