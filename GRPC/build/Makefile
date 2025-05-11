@@ -12,17 +12,17 @@ PROTO_PATH_FILE_STUDENTS = ../proto/students/students.proto
 GEN_PATH_STUDENTS = ../proto/students/gen
 
 
-all: clear build
+all: clear buildAllContracts
 	
 
-build:
+build: 
 	go build -o $(APP_PATH)$(APP_NAME) $(APP_PATH)$(BUILD_FILES)
 
 deps:
 	go get google.golang.org/grpc@latest
 	go mod tidy
 
-buildAllContracts: buildContractStudents buildContractHealth
+buildAllContracts: deps buildContractStudents buildContractHealth
 	@echo "All contracts are generated"
 
 buildContractHealth: 
