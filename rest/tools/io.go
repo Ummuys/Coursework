@@ -1,10 +1,11 @@
 package tools
 
 import (
-	"coursework/handlers/client"
 	"fmt"
 	"slices"
 	"time"
+
+	"github.com/ummuys/coursework/rest-way/handlers/client"
 )
 
 func Report(n int) {

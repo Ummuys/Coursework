@@ -13,6 +13,6 @@ func main() {
 	go func() { server.InitGin() }()
 	fmt.Println("OK status: server is running")
 
-	<-time.After(1000000000 * time.Second)
+	<-time.After(2 * time.Second)
 	tools.Report(1000)
 }
