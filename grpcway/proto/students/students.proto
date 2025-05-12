@@ -1,0 +1,24 @@
+syntax = "proto3";
+package students;
+
+import "google/protobuf/empty.proto";
+option go_package = "github.com/ummuys/courseproject/grpcway/proto/students;students";
+
+service Students{
+    rpc Get(google.protobuf.Empty) returns (GetResponse);
+}
+
+message StudentInfo {
+    string FirstName = 1;
+    string SecondName = 2;
+    string Surname = 3;
+    string Email = 4;
+    float AverageRating = 5;
+    string Type = 6;
+    string Faculty = 7;
+    string Group = 8;
+}
+
+message GetResponse{
+    map<int64, StudentInfo> Students = 1;
+}
