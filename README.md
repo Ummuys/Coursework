@@ -18,7 +18,7 @@
 
 - Go 1.24.2
 - Make (опционально)
-- Protoc
+- Protoc(ubuntu: sudo apt install protobuf-compiler)
 
 ---
 
@@ -111,3 +111,5 @@ courseproject/
 * Проверка скорости доставки от мелких до крупных пакетов данных с помощью gRPC и REST api.
 
 ## ⚡️Автор: Евгений Егоров/Ummuys
+
+## ⚡️Тестировщик: Ипатов Тимофей/s1l0ne
