@@ -27,9 +27,12 @@ deps:
 	@echo "Updating package . . ."
 	@go get google.golang.org/grpc@latest
 	@go get google.golang.org/protobuf@latest
+	@echo "Package updated\n"
+
+	@echo "Install packages grpc/protoc . . ."
 	@go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	@go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-	@echo "Package updated\n"
+	@echo "Package installed\n"
 
 buildAllContracts: checkFolders deps buildContractStudents buildContractHealth
 	@echo "All contracts are generated\n"

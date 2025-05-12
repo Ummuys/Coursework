@@ -22,9 +22,9 @@ func main() {
 
 	select {
 	case <-serverStatus:
-		fmt.Println("OK status: server is running")
+		fmt.Println("OK status: server is running\n")
 	case <-time.After(1 * time.Second):
-		panic(errors.New("can't create a server"))
+		panic(errors.New("can't create a server\n"))
 	}
 
 	conn, err := tools.InitClientGRPC()
@@ -32,7 +32,6 @@ func main() {
 		panic(err)
 	}
 	defer conn.Close()
-	fmt.Println("Conn is succsesful")
 
 	clientHealth := pbHealth.NewHealthClient(conn)
 	clientStudents := pbStudents.NewStudentsClient(conn)

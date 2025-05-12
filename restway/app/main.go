@@ -11,7 +11,7 @@ import (
 func main() {
 	fmt.Println("Try to start server . . .")
 	go func() { server.InitGin() }()
-	fmt.Println("OK status: server is running")
+	fmt.Println("OK status: server is running\n")
 
 	<-time.After(2 * time.Second)
 	tools.Report(1000)

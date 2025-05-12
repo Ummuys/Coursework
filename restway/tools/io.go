@@ -9,13 +9,14 @@ import (
 )
 
 func Report(n int) {
+	n += 1
 	times := make([]time.Duration, n)
 	for i := 0; i < n; i++ {
 		times[i] = client.TestRest()
 	}
 
-	fmt.Println("All times\n", times[1:])
-	fmt.Println("\nMax time\n", slices.Max(times[1:]))
-	fmt.Println("\nMin time\n", slices.Min(times[1:]))
-
+	fmt.Println("<====> RESULT REST-WAY <====>\n")
+	fmt.Println("Number of tests: ", n-1, "\n")
+	fmt.Println("Max time: ", slices.Max(times[1:]), "\n")
+	fmt.Println("Min time: ", slices.Min(times[1:]), "\n")
 }

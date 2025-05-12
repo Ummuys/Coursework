@@ -15,7 +15,8 @@ func Report(n int, clientStudents pbStudents.StudentsClient) {
 		times[i] = hand.Get(clientStudents)
 	}
 
-	fmt.Println("All times\n", times)
-	fmt.Println("\nMax time\n", slices.Max(times))
-	fmt.Println("\nMin time\n", slices.Min(times))
+	fmt.Println("<====> RESULT GRPC-WAY <====>\n")
+	fmt.Println("Number of tests: ", n, "\n")
+	fmt.Println("Max time: ", slices.Max(times), "\n")
+	fmt.Println("Min time: ", slices.Min(times), "\n")
 }
