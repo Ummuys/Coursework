@@ -22,6 +22,17 @@
 
 ---
 
+### ВАЖНО!!!
+- Если у вас появлилась ошибка: 
+```
+protoc-gen-go-grpc: program not found or is not executable
+Please specify a program using absolute path or make sure the program is available in your PATH system variable
+```
+- то введите в консоль:
+```
+PATH="${PATH}:${HOME}/go/bin"
+```
+
 ### 🔧 Установка
 
 ```bash
@@ -69,10 +80,6 @@ cd grpcway
 	cd app
 	go run main.go
 <----------->
-
-
-
-
 ```
 
 ## 🧩 Структура проекта
